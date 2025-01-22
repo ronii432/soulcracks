@@ -45,7 +45,6 @@ triggers:
   branches:
     include:
       - main
-      - dev
   events:
     - push
     - pull_request
