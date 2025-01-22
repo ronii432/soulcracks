@@ -18,7 +18,7 @@ steps:
   - label: "Run the script"
     commands:
       - chmod +x *
-      - python3 rohit.py
+      - python3 Rohit.py
     container:
       image: python:3.9
 
