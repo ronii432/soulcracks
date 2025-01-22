@@ -49,3 +49,23 @@ triggers:
   events:
     - push
     - pull_request
+
+    # Terraform steps
+  - label: "Initialize Terraform"
+    commands:
+      - terraform init
+    container:
+      image: hashicorp/terraform:1.5.0
+
+  - label: "Plan Terraform"
+    commands:
+      - terraform plan -out=tfplan
+    container:
+      image: hashicorp/terraform:1.5.0
+
+  - label: "Apply Terraform"
+    commands:
+      - terraform apply -auto-approve tfplan
+    container:
+      image: hashicorp/terraform:1.5.0
+
