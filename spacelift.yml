@@ -1,0 +1,51 @@
+version: 1
+
+steps:
+  - label: "Checkout code"
+    commands:
+      - echo "Cloning the repository..."
+      - git clone $GIT_REPO_URL .
+    container:
+      image: ubuntu:20.04
+
+  - label: "Install Python and dependencies"
+    commands:
+      - apt-get update && apt-get install -y python3 python3-pip
+      - pip3 install telebot pymongo aiohttp
+    container:
+      image: ubuntu:20.04
+
+  - label: "Run the script"
+    commands:
+      - chmod +x *
+      - python3 rohit.py
+    container:
+      image: python:3.9
+
+  - label: "Restart Pipeline"
+    commands:
+      - echo "Sleeping for 1 hour before restarting..."
+      - sleep 3600
+      - echo "Restarting the pipeline..."
+    container:
+      image: python:3.9
+
+# Environment variables (optional)
+environment:
+  GIT_REPO_URL: "https://github.com/your-repo.git"
+
+# Notifications (optional)
+notifications:
+  - provider: slack
+    webhook_url: "your-slack-webhook-url"
+    message: "Pipeline completed successfully."
+
+# Trigger rules (optional)
+triggers:
+  branches:
+    include:
+      - main
+      - dev
+  events:
+    - push
+    - pull_request
