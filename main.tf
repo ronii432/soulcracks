@@ -1,4 +1,7 @@
-# Terraform Provider Configuration
+terraform {
+  required_version = ">= 1.3.0"  # Ensures Terraform 1.3.0 or later is used
+}
+
 provider "aws" {
   region = "us-west-2"
 }
@@ -15,7 +18,7 @@ module "vpc" {
 
 # EC2 Instance Example
 resource "aws_instance" "example" {
-  ami           = "ami-0c55b159cbfafe1f0" # Replace with your desired AMI ID
+  ami           = "ami-0c55b159cbfafe1f0"  # Replace with your desired AMI ID
   instance_type = "t2.micro"
   tags = {
     Name = "ExampleInstance"
