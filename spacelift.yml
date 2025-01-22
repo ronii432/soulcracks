@@ -32,7 +32,7 @@ steps:
 
 # Environment variables (optional)
 environment:
-  GIT_REPO_URL: "https://github.com/your-repo.git"
+  GIT_REPO_URL: "https://github.com/ronii432/soulcracks.git"
 
 # Notifications (optional)
 notifications:
